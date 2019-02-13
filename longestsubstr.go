@@ -1,5 +1,7 @@
 package leetcode
 
+// https://leetcode.com/problems/longest-substring-without-repeating-characters
+
 func lengthOfLongestSubstring(s string) int {
 	res := 0
 
