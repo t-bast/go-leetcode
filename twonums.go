@@ -2,6 +2,7 @@ package leetcode
 
 // https://leetcode.com/problems/add-two-numbers/
 
+// ListNode linked list.
 type ListNode struct {
 	Val  int
 	Next *ListNode
