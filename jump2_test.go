@@ -23,4 +23,11 @@ func TestJump2(t *testing.T) {
 	}
 
 	assert.Equal(t, 2, jump(stackBlower))
+
+	longTest := make([]int, 25000)
+	for i := 0; i < len(longTest); i++ {
+		longTest[i] = 10
+	}
+
+	assert.Equal(t, 2500, jump(longTest))
 }
