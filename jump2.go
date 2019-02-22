@@ -1,5 +1,7 @@
 package leetcode
 
+// https://leetcode.com/problems/jump-game-ii/
+
 type move struct {
 	start int
 	val   int
@@ -11,6 +13,10 @@ func jump(nums []int) int {
 	}
 
 	if len(nums) == 2 {
+		return 1
+	}
+
+	if nums[0] >= len(nums)-1 {
 		return 1
 	}
 
@@ -53,15 +59,32 @@ func jump(nums []int) int {
 			// If we exhausted the current position's possibilities, continue
 			// back-tracking.
 			if lastMove.val == cur {
-				// TODO: we probably break the for loop here.
+				// If we can't backtrack more, that means we tried everything.
+				if len(moves) == 0 {
+					break
+				}
+
+				// Otherwise we keep on backtracking.
+				lastMove = moves[len(moves)-1]
+				position = lastMove.start
+				continue
 			} else {
-				position += lastMove.val + 1
 				moves = append(moves, move{start: position, val: lastMove.val + 1})
+				position += lastMove.val + 1
 				continue
 			}
 		}
 
-		// TODO: select next move and apply it (just +1).
+		// If stuck, backtrack one move.
+		if cur == 0 {
+			// Backtrack one move.
+			position = lastMove.start
+			continue
+		}
+
+		// Otherwise we should keep going forward, starting with 1.
+		moves = append(moves, move{start: position, val: 1})
+		position++
 	}
 
 	return bestScore

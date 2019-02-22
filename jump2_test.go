@@ -10,6 +10,11 @@ func TestJump2(t *testing.T) {
 	assert.Equal(t, 0, jump([]int{2}))
 	assert.Equal(t, 1, jump([]int{1, 2}))
 	assert.Equal(t, 2, jump([]int{2, 3, 1, 1, 4}))
+	assert.Equal(t, 3, jump([]int{3, 2, 2, 2, 2, 2, 2, 1}))
+	assert.Equal(t, 2, jump([]int{2, 3, 0, 1, 4}))
+	assert.Equal(t, 2, jump([]int{3, 1, 0, 1, 4}))
+	assert.Equal(t, 1, jump([]int{3, 2, 1}))
+	assert.Equal(t, 1, jump([]int{2, 2, 1}))
 
 	stackBlower := make([]int, 1024)
 	stackBlower[0] = 25
@@ -17,5 +22,5 @@ func TestJump2(t *testing.T) {
 		stackBlower[i] = 1024 - i
 	}
 
-	assert.Equal(t, 7, jump(stackBlower))
+	assert.Equal(t, 2, jump(stackBlower))
 }
